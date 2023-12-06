@@ -28,7 +28,10 @@ public class LogoutServlet extends HttpServlet {
 
         Cookie[] cookies = req.getCookies();
         Cookie cookie = CookieUtil.getCookie(cookies,"accountID");
-        CookieUtil.removeCookie(cookie);
+        if(cookie != null)
+        {
+            CookieUtil.removeCookie(cookie);
+        }
         resp.addCookie(cookie);
         resp.sendRedirect("home");
     }

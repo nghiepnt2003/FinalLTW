@@ -25,8 +25,9 @@
                 <input name="pass"  type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
 
                 <div class="form-group form-check">
-                    <input name="remember" value="1" type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <input style="margin-top: 17px;" name="remember" value="1" type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                    <a href="ForgetPassword.jsp" style="display: inline-block;margin-left: 130px">Forget Password</a>
                 </div>
 
                 <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
@@ -46,7 +47,7 @@
             <%--                --%>
                 <div id="spinner"></div>
                 <input name="otp" type="text" id="otpInput" placeholder="EnterOTP"   required autofocus>
-                <button type="button" onclick="sendOtp()">Send OTP</button>
+                <button type="button" style="border-radius: 4px;border: 1px solid #777" onclick="sendOtp()">Send OTP</button>
                 <div id="message"></div>
             <%--                --%>
 

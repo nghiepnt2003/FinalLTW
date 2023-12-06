@@ -36,8 +36,9 @@ public class OrderServlet extends HttpServlet {
         if ("add".equals(action)) {
             addOrder(req);
         } else if ("addnow".equals(action)) {
-            addtocart(req);
-            addOrder(req);
+            buyNow(req);
+//            addtocart(req);
+//            addOrder(req);
         } else if ("manage".equals(action)) {
             showOrderList(req);
             req.getRequestDispatcher("ManageOrder.jsp").forward(req, resp);
@@ -63,6 +64,21 @@ public class OrderServlet extends HttpServlet {
         }
         String referer = req.getHeader("referer");
         resp.sendRedirect(referer);
+    }
+
+    private void buyNow(HttpServletRequest req) {
+        Long productID = Long.parseLong(req.getParameter("productID"));
+        Product product = ProductDB.getProductByID(productID);
+        CartLine cartLine = new CartLine(product,1L);
+        HttpSession session = req.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        List<CartLine> cartLineList = cart.getCartLines();
+        cart.setCartLines(new ArrayList<CartLine>());
+        cart.getCartLines().add(cartLine);
+        CartDB.update(cart);
+        addOrder(req);
+        cart.setCartLines(cartLineList);
+        CartDB.update(cart);
     }
 
     private void solveOrder( Order order) {

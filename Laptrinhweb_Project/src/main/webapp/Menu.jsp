@@ -24,7 +24,7 @@
 
                 <c:if test="${sessionScope.account.isAdmin() == false}">
                     <li class="nav-item">
-                        <a class="nav-link" href="loadProfile">My profile</a>
+                        <a class="nav-link" href="profile?action=loadProfile">My profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="order?action=myOrder">My Order</a>

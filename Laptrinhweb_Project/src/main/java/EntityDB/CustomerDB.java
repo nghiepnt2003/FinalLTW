@@ -105,16 +105,24 @@ public class CustomerDB {
         }
     }
 
-
-    public static Customer select(String email) {
+    public static  Customer getCustomerByMail(String name,String mail){
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        TypedQuery<Customer> query = em.createQuery("SELECT cus FROM Customer cus WHERE cus.mail = :email", Customer.class);
-        query.setParameter("email", email);
-        try {
-            return query.getSingleResult();
-        } catch (NoResultException e) {
+        String qString = "SELECT customer FROM Customer customer WHERE customer.mail = :mail AND customer.account.userName =:name";
+        TypedQuery<Customer> q = em.createQuery(qString, Customer.class);
+        q.setParameter("name",name);
+        q.setParameter("mail",mail);
+        try{
+            Customer customer = q.getSingleResult();
+            return customer;
+        }catch (NoResultException e){
             return null;
+        } finally {
+            em.close();
         }
     }
+
+
+
+
 
 }

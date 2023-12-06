@@ -66,8 +66,8 @@
                     <td>${o.deliveryAddress}</td>
 
                     <td>
-                        <a href="loadCustomer?cusid=${o.id}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                        <a href="deleteCustomer?cusid=${o.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        <a href="customer?action=loadCustomer&cusid=${o.id}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                        <a href="customer?action=deleteCustomer&cusid=${o.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                     </td>
                 </tr>
             </c:forEach>

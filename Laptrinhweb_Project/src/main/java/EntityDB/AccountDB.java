@@ -56,7 +56,21 @@ public class AccountDB {
             em.close();
         }
     }
-
+    public static Account getAccountbyAccountName(String userName){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String qString = "SELECT account FROM Account account " +
+                "WHERE account.userName = :userName";
+        TypedQuery<Account> q = em.createQuery(qString, Account.class);
+        q.setParameter("userName",userName);
+        try{
+            Account acc = q.getSingleResult();
+            return acc;
+        }catch (NoResultException e){
+            return null;
+        } finally {
+            em.close();
+        }
+    }
     public static Account getAccount(String userName,String pass){
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "SELECT account FROM Account account " +

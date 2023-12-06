@@ -26,7 +26,7 @@
     <div id="editEmployeeModal">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="editprofile" method="post">
+            <form action="profile?action=editProfile" method="post">
                 <div class="modal-header">
                     <h4 class="modal-title">Profile</h4>
                     <a href="home">
@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label>Account name</label>
-                        <input value="${detail.account.userName}" name="username" type="text" class="form-control" required>
+                        <input value="${detail.account.userName}" name="username" type="text" class="form-control" readonly required>
                     </div>
                     <div class="form-group">
                         <label>Password</label>

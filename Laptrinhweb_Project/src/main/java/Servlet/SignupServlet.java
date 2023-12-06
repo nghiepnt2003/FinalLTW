@@ -40,11 +40,14 @@ public class SignupServlet extends HttpServlet {
         String email = req.getParameter("email");
         String otpRegister = (String) session.getAttribute("otpRegister");
         String deliveryAddress = req.getParameter("deliveryAddress");
+        if (AccountDB.getAccountbyAccountName(user) != null) {
+            req.setAttribute("mess", "Account already exists !!!!");
+        }
         if (AccountDB.getAccount(user, pass) != null) {
             req.setAttribute("mess", "Account already exists !!!!");
         } else if (otpRegister == null || !otp.equals(otpRegister)) {
             req.setAttribute("mess", "Wrong OTP !!!!");
-        } else if (pass.equals(repass) && otpRegister != null && otp.equals(otpRegister) ) {
+        } else if (pass.equals(repass) && otpRegister != null && otp.equals(otpRegister)) {
             Account account = new Account(user, pass, false);
             Customer customer = new Customer(name, phone, email, deliveryAddress, account);
             CustomerDB.insert(customer);

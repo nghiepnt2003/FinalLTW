@@ -14,7 +14,28 @@ function sendOtp() {
 
     });
 }
+function sendOtpCheckPass() {
+    var nameValue = document.querySelector('input[name="name"]').value;
+    var emailValue = document.querySelector('input[name="email"]').value;
+    $.ajax({
+        type: 'POST',
+        url: 'otp',
+        data: {
+            action: 'forget',
+            name: nameValue,
+            email: emailValue
+        },success: function(response) {
+            var mess = document.getElementById("mess");
+            if(response === "Wrong UserName or Email"){
+                mess.className = "text-danger";
+            }else {
+                mess.className = "text-success";
+            }
+            mess.innerText = response;
+        },
 
+    });
+}
 
 function registerServlet() {
     var nameValue = document.querySelector('input[name="name"]').value;

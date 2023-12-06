@@ -41,9 +41,9 @@ public class LoginServlet extends HttpServlet {
             Cookie cookie = new Cookie("accountID",account.getId().toString());
             Cookie cookie1 = new Cookie("customerID",CustomerDB.getCustomerByAccount(account).getId().toString());
 
-            cookie.setMaxAge(1000);
+            cookie.setMaxAge(86400);
             cookie.setPath("/");
-            cookie1.setMaxAge(1000);
+            cookie1.setMaxAge(86400);
             cookie1.setPath("/");
 
             resp.addCookie(cookie);
